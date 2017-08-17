@@ -1,7 +1,7 @@
 #include "Action.h"
 
 Action::Action(unsigned long waitTime) {
-	startTime = millis();
+	startTime = millis() + waitTime;
 	this->waitTime = waitTime;
 }
 

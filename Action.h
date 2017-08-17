@@ -13,7 +13,7 @@ class Action {
 	protected:
 		unsigned long startTime, waitTime;
 		virtual void execute() = 0;
-		bool enabled;
+		bool enabled = true;
 };
 
 #endif

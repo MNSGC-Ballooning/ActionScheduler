@@ -1,9 +1,9 @@
 #include "RepeatingAction.h"
 
 bool RepeatingAction::check() {
-	if (enabled && millis() - startTime > waitTime) {
+	if (enabled && millis() > startTime) {
 		execute();
-		startTime = millis();
+		startTime = millis() + waitTime;
 	}
 	return false;
 }
