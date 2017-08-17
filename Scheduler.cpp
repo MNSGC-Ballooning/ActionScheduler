@@ -5,9 +5,37 @@ void Scheduler::schedule(Action* action) {
 	for (Node* runner = head; runner != NULL; runner = runner->next) {
 		if (action == runner->action) return;
 	}
-	Node* newHead = new Node(action);
+	Node* newHead = new Node(action, "");
 	newHead->next = head;
 	head = newHead;
+}
+
+void Scheduler::schedule(Action* action; String cancelTrigger) {
+	if (action == NULL) return;
+	for (Node* runner = head; runner != NULL; runner = runner->next) {
+		if (action == runner->action) return;
+	}
+	Node* newHead = new Node(action, cancelTrigger);
+	newHead->next = head;
+	head = newHead;
+}
+
+void Scheduler::cancel(String toCancel) {
+	for (Node* runner = head; runner != NULL;) {
+		if (toCancel.equals(runner->cancelTrigger)) {
+			Node* checked = runner;
+			runner = runner->next;
+			removeNode(checked);
+		}
+		else
+			runner = runner->next;
+	}
+}
+
+void Scheduler::clear() {
+	while (head != NULL) {
+		removeNode(head);
+	}
 }
 
 void Scheduler::checkActions() {
@@ -22,8 +50,9 @@ void Scheduler::checkActions() {
 	}
 }
 
-Scheduler::Node::Node(Action* action) {
+Scheduler::Node::Node(Action* action, String cancelTrigger) {
 	this->action = action;
+	this->cancelTrigger = cancelTrigger;
 }
 
 Scheduler::Node::~Node() {

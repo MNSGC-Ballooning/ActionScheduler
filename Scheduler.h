@@ -7,14 +7,18 @@ class Scheduler {
 	public:
 		Scheduler();
 		void schedule(Action* action);
+		void Schedule(Action* action, String cancelTrigger);
+		void cancel(String toCancel);
+		void clear();
 		void checkActions();
 	private:
 		class Node {
 			public:
-				Node(Action* action);
+				Node(Action* action, String cancelTrigger);
 				~Node();
 				Action* action;
 				Node* next;
+				String cancelTrigger;
 		};
 		Node* head;
 		void removeNode(Node* node);
