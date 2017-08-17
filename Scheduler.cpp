@@ -2,30 +2,20 @@
 
 void Scheduler::schedule(Action* action) {
 	if (action == NULL) return;
-	Node* temp = new Node(action);
-	temp->next = head;
-	head = temp;
+	for (Node* runner = head; runner != NULL; runner = runner->next) {
+		if (action == runner->action) return;
+	}
+	Node* newHead = new Node(action);
+	newHead->next = head;
+	head = newHead;
 }
 
 void Scheduler::checkActions() {
-	Node* runner = head;
-	while (runner != NULL) {
+	for (Node* runner = head; runner != NULL;) {
 		if (runner->action->check()) {
-			Node* newNext = runner->next;
-			if (runner == head) {
-				delete head;
-				head = newNext;
-				runner = head;
-			}
-			else {
-				Node* prev = head;
-				while (prev->next != runner) {
-					prev = prev->next;
-				}
-				prev->next = newNext;
-				delete runner;
-				runner = newNext;
-			}
+			Node* checked = runner;
+			runner = runner->next;
+			removeNode(checked);
 		}
 		else
 			runner = runner->next;
@@ -38,4 +28,20 @@ Scheduler::Node::Node(Action* action) {
 
 Scheduler::Node::~Node() {
 	delete action;
+}
+
+void Scheduler::removeNode(Node* node) {
+	if (node == head) {
+		node = head->next;
+		delete head;
+		head = node;
+	}
+	else {
+		Node* prev = head;
+		while (prev->next != node) {
+			prev = prev->next;
+		}
+		prev->next = node->next;
+		delete node;
+	}
 }

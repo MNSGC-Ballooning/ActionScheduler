@@ -17,6 +17,7 @@ class Scheduler {
 				Node* next;
 		};
 		Node* head;
+		void removeNode(Node* node);
 };
 
 #endif
