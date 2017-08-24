@@ -1,16 +1,6 @@
 #include "Scheduler.h"
 
-void Scheduler::schedule(Action* action) {
-	if (action == NULL) return;
-	for (Node* runner = head; runner != NULL; runner = runner->next) {
-		if (action == runner->action) return;
-	}
-	Node* newHead = new Node(action, "");
-	newHead->next = head;
-	head = newHead;
-}
-
-void Scheduler::schedule(Action* action; String cancelTrigger) {
+void Scheduler::schedule(Action* action, String cancelTrigger) {
 	if (action == NULL) return;
 	for (Node* runner = head; runner != NULL; runner = runner->next) {
 		if (action == runner->action) return;

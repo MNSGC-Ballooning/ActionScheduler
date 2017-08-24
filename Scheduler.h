@@ -5,9 +5,7 @@
 
 class Scheduler {
 	public:
-		Scheduler();
-		void schedule(Action* action);
-		void Schedule(Action* action, String cancelTrigger);
+		void schedule(Action* action, String cancelTrigger = "");
 		void cancel(String toCancel);
 		void clear();
 		void checkActions();
