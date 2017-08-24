@@ -5,8 +5,13 @@ Action::Action(unsigned long waitTime) {
 	this->waitTime = waitTime;
 }
 
-void Action::enable() {
-	enabled = true;
+bool Action::check() {
+	if (enabled && millis() > startTime) {
+		execute();
+		disable();
+		return true;
+	}
+	else return false;
 }
 
 void Action::disable() {
