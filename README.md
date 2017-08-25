@@ -39,7 +39,6 @@ In MySubclass.h:
 	#ifndef MySubclass_h
 	#define MySubclass_h
 	
-	#include <Arduino.h>
 	#include <Action.h>
 	
 	class MySubclass: public Action {
