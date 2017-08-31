@@ -8,12 +8,8 @@ Action::Action(unsigned long waitTime) {
 bool Action::check() {
 	if (enabled && millis() > startTime) {
 		execute();
-		disable();
+		enabled = false;
 		return true;
 	}
 	else return false;
-}
-
-void Action::disable() {
-	enabled = false;
 }

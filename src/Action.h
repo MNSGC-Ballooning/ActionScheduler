@@ -12,8 +12,6 @@ class Action {
 		unsigned long startTime, waitTime;
 		virtual void execute() = 0;
 		bool enabled = true;
-	private:
-		void disable();
 };
 
 #endif
