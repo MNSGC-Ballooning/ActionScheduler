@@ -1,8 +1,8 @@
 #include "Action.h"
 
-Action::Action(unsigned long waitTime) {
+Action::Action(unsigned long waitTime):
+	waitTime(waitTime) {
 	startTime = millis() + waitTime;
-	this->waitTime = waitTime;
 }
 
 bool Action::check() {
