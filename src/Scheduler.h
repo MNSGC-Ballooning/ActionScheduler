@@ -15,10 +15,10 @@ class Scheduler {
 				Node(Action* action, String cancelTrigger);
 				~Node();
 				Action* action;
-				Node* next;
+				Node* next = NULL;
 				String cancelTrigger;
 		};
-		Node* head;
+		Node* head = NULL;
 		void removeNode(Node* node);
 };
 
