@@ -4,14 +4,14 @@
 #include <Arduino.h>
 
 class Action {
-	public:
-		Action(unsigned long waitTime);
-		virtual ~Action(){}
-		virtual bool check();
-	protected:
-		unsigned long startTime, waitTime;
-		virtual void execute() = 0;
-		bool enabled = true;
+  public:
+    Action(unsigned long waitTime);
+    virtual ~Action(){}
+    virtual bool check();
+  protected:
+    unsigned long startTime, waitTime;
+    virtual void execute() = 0;
+    bool enabled = true;
 };
 
 #endif
